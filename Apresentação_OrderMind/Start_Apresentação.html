@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OrderMind — Sistema inteligente de decisão sobre pedidos</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- Build global do Vue 3 (offline): coloque vue.global.prod.js em ./vendor/ -->
+  <script src="vendor/vue.global.prod.js"></script>
+  <script>
+    // Fallback: se o arquivo local não existir, tenta o CDN (precisa de internet).
+    window.Vue || document.write('<script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"><\/script>')
+  </script>
+  <script>
+    if (!window.Vue) document.getElementById('app').innerHTML =
+      '<p style="font:16px/1.5 -apple-system,system-ui;padding:48px;max-width:560px">Vue não encontrado. Copie <code>vue.global.prod.js</code> (build global do Vue 3) para a pasta <code>vendor/</code> e recarregue.</p>'
+  </script>
+
+  <!-- NÚCLEO (JS puro) -->
+  <script src="js/core/heap.js"></script>
+  <script src="js/core/scoring.js"></script>
+  <script src="js/core/simulation.js"></script>
+  <!-- APRESENTAÇÃO -->
+  <script src="js/ui/primitives.js"></script>
+  <script src="js/ui/heap-lab.js"></script>
+  <script src="js/ui/live-queue.js"></script>
+  <script src="js/ui/runner.js"></script>
+  <script src="js/ui/dashboard.js"></script>
+  <script src="js/ui/static-slides.js"></script>
+  <!-- ACESSIBILIDADE: VLibras (LIBRAS) -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js" defer></script>
+  <script>
+    window.addEventListener('load', function () {
+      try { if (window.VLibras && window.VLibras.Widget) new window.VLibras.Widget('https://vlibras.gov.br/app') } catch (e) { console.warn('VLibras indisponível:', e) }
+    })
+  </script>
+
+  <!-- SHELL -->
+  <script src="js/app.js"></script>
+</body>
+</html>
